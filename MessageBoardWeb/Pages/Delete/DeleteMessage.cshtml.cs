@@ -38,9 +38,9 @@ namespace MessageBoardWeb.Pages.Delete
             GetMessages = _messagesRepository.GetMessage(id);
             GetCategory = _categoryRepos.ReadOneCategories(GetMessages.CategoryId);
         }
-        public IActionResult OnPost(int id)
+        public IActionResult OnPost(int id, int userid)
         {
-            _messagesRepository.DeleteMessage(id);
+            _messagesRepository.DeleteMessage(id, userid);
             return RedirectToPage("../Index");
         }
     }

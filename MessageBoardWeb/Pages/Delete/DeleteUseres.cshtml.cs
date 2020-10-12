@@ -41,7 +41,7 @@ namespace MessageBoardWeb.Pages.Delete
             MessagesList = _messagesRepository.getMessageFromUser(userid);
             foreach (Messages messages in MessagesList)
             {
-                _messagesRepository.DeleteMessage(messages.MessageId);
+                _messagesRepository.DeleteMessage(messages.MessageId, userid);
             }
             return RedirectToPage("../Index");
         }

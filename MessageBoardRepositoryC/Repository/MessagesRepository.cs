@@ -33,7 +33,15 @@ namespace MessageBoardRepository.Repository
             SqlDataReader myReader = cmd.ExecuteReader();
             while (myReader.Read())
             {
-                messagesList.Add(new Messages { MessageId = (int)myReader["MessageId"], Title = (string)myReader["Title"], Content = (string)myReader["Content"], CategoryId = (int)myReader["CategoryId"], Dato = (DateTime)myReader["Dato"], UserId = (int)myReader["UserId"] });
+                messagesList.Add(new Messages
+                {
+                    MessageId = (int)myReader["MessageId"],
+                    Title = (string)myReader["Title"],
+                    Content = (string)myReader["Content"],
+                    CategoryId = (int)myReader["CategoryId"],
+                    Dato = (DateTime)myReader["Dato"],
+                    UserId = (int)myReader["UserId"]
+                });
             }
 
             con.Close();
@@ -52,7 +60,15 @@ namespace MessageBoardRepository.Repository
             SqlDataReader myReader = cmd.ExecuteReader();
             while (myReader.Read())
             {
-                messagesList.Add(new Messages { MessageId = (int)myReader["MessageId"], Title = (string)myReader["Title"], Content = (string)myReader["Content"], CategoryId = (int)myReader["CategoryId"], Dato = (DateTime)myReader["Dato"], UserId = (int)myReader["UserId"] });
+                messagesList.Add(new Messages
+                {
+                    MessageId = (int)myReader["MessageId"],
+                    Title = (string)myReader["Title"],
+                    Content = (string)myReader["Content"],
+                    CategoryId = (int)myReader["CategoryId"],
+                    Dato = (DateTime)myReader["Dato"],
+                    UserId = (int)myReader["UserId"]
+                });
             }
 
             con.Close();
@@ -73,7 +89,15 @@ namespace MessageBoardRepository.Repository
             SqlDataReader myReader = cmd.ExecuteReader();
             while (myReader.Read())
             {
-                messagesList.Add(new Messages { MessageId = (int)myReader["MessageId"], Title = (string)myReader["Title"], Content = (string)myReader["Content"], CategoryId = (int)myReader["CategoryId"], Dato = (DateTime)myReader["Dato"], UserId = (int)myReader["UserId"] });
+                messagesList.Add(new Messages
+                {
+                    MessageId = (int)myReader["MessageId"],
+                    Title = (string)myReader["Title"],
+                    Content = (string)myReader["Content"],
+                    CategoryId = (int)myReader["CategoryId"],
+                    Dato = (DateTime)myReader["Dato"],
+                    UserId = (int)myReader["UserId"]
+                });
             }
 
             con.Close();
@@ -93,15 +117,12 @@ namespace MessageBoardRepository.Repository
             SqlDataReader myReader = cmd.ExecuteReader();
             while (myReader.Read())
             {
-                if ((int)myReader["MessageId"] == messageId)
-                {
-                    getmessage.Title = (string)myReader["Title"];
-                    getmessage.MessageId = (int)myReader["MessageId"];
-                    getmessage.Content = (string)myReader["Content"];
-                    getmessage.CategoryId = (int)myReader["CategoryId"];
-                    getmessage.Dato = (DateTime)myReader["Dato"];
-                    getmessage.UserId = (int)myReader["UserId"];
-                }
+                getmessage.Title = (string)myReader["Title"];
+                getmessage.MessageId = (int)myReader["MessageId"];
+                getmessage.Content = (string)myReader["Content"];
+                getmessage.CategoryId = (int)myReader["CategoryId"];
+                getmessage.Dato = (DateTime)myReader["Dato"];
+                getmessage.UserId = (int)myReader["UserId"];
             }
             con.Close();
             return getmessage;
@@ -120,8 +141,15 @@ namespace MessageBoardRepository.Repository
             SqlDataReader myReader = cmd.ExecuteReader();
             while (myReader.Read())
             {
-                messagesList.Add(new Messages { Title = (string)myReader["Title"], MessageId = (int)myReader["MessageId"], Content = (string)myReader["Content"], 
-                    CategoryId = (int)myReader["CategoryId"], Dato = (DateTime)myReader["Dato"], UserId = (int)myReader["UserId"] });
+                messagesList.Add(new Messages
+                {
+                    Title = (string)myReader["Title"],
+                    MessageId = (int)myReader["MessageId"],
+                    Content = (string)myReader["Content"],
+                    CategoryId = (int)myReader["CategoryId"],
+                    Dato = (DateTime)myReader["Dato"],
+                    UserId = (int)myReader["UserId"]
+                });
 
             }
             con.Close();
@@ -150,17 +178,17 @@ namespace MessageBoardRepository.Repository
             con.Close();
 
             messageId = Convert.ToInt32(cmd.Parameters["@MessageId"].Value);
-            //messagesList = ReadMessages();
             return messageId;
         }
 
-        public void DeleteMessage(int messageId)
+        public void DeleteMessage(int messageId, int userid)
         {
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("DeleteMessage", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@MessageId", messageId);
+            cmd.Parameters.AddWithValue("@UserId", userid);
 
             con.Open();
             cmd.ExecuteNonQuery();

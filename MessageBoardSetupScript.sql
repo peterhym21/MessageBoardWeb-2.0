@@ -12,7 +12,7 @@ Create Table [dbo].[Category](
     [CategoryId] [Int] NOT NULL Primary Key Identity(1, 1),
     [CategoryName] [NVarChar](100) NOT NULL,
 )
-
+GO
 Create Table [dbo].[Users](
     [UserId] [Int] NOT NULL Primary Key Identity(1, 1),
     [Username] [VarChar](30) NOT NULL,
@@ -39,7 +39,7 @@ Values('Default'),
 GO
 
 Insert Into Users(Username, Password)
-Values('DefultUser','meh'),
+Values('DefaultUser','meh'),
 ('Peter','meh'),
 ('Nicolai','meh'),
 ('Casper','meh');
@@ -204,9 +204,11 @@ GO
 
 --Delete
 Create Procedure DeleteMessage
-@MessageId Int
+@MessageId Int,
+@UserId Int
 As
-Delete [Messages] WHERE MessageId = @MessageId
+Delete [Messages] 
+WHERE MessageId = @MessageId and UserId = @UserId
 Go
 
 --Read Messages in category

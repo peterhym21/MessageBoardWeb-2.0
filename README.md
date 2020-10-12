@@ -32,9 +32,9 @@ ___
 <br>
 
 - [x] Index done?
-- [ ] Message Done ?
-- [ ] Category done ?
-- [ ] User done?
+- [x] Message Done ?
+- [x] Category done ?
+- [x] User done?
 - [x] Db done?
-- [ ] SP done?
+- [x] SP done?
 

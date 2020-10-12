@@ -1,0 +1,74 @@
+﻿@page "{userid:int?}"
+@model MessageBoardWeb.Pages.UserPageModel
+<div class="text-center container">
+
+    <div class="col-lg-12">
+        <h1>Welcome</h1>
+        <div>
+
+            @if (Model.User.UserId == 0 || Model.User == null)
+            {
+                <h2>Du er ikke loget ind</h2>
+            }
+            else
+            {
+                <h2>Du er loget ind som: </h2>
+                <h2>
+                    @Model.User.UserName
+                </h2>
+            }
+        </div>
+    </div>
+    <br />
+    <div class="col-lg-12">
+
+        <a asp-page="/CreateMessage" asp-route-userid=@Model.User.UserId class="btn btn-primary">Create new Message / Post</a>
+
+        <br />
+        <br />
+
+        <a asp-page="/Edit/EditUsers" asp-route-userid=@Model.User.UserId class="btn btn-primary">Edit User</a>
+
+        <br />
+        <br />
+
+        <a asp-page="/Delete/DeleteUseres" asp-route-userid=@Model.User.UserId class="btn btn-primary">Delete User</a>
+
+    </div>
+    <br />
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12">
+                @if (Model.MessagesList != null)
+                {
+                    <table class="table table-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Category</th>
+                        </tr>
+                        @foreach (var Message in Model.MessagesList)
+                        {
+                            <tr>
+                                <td>@Message.Title</td>
+                                <td>@Message.Content</td>
+                                @foreach (var Category in Model.Categorys)
+                                {
+                                    @if (Message.CategoryId == Category.CateogryId)
+                                    {
+                                        <td>@Category.CategoryName</td>
+                                    }}
+                                <td>
+                                    <a asp-page="/Edit/EditMessage" asp-route-id=@Message.MessageId>Edit</a> |
+                                    <a asp-page="/Details/DetaileMessages" asp-route-id=@Message.MessageId>Details</a> |
+                                    <a asp-page="/Delete/DeleteMessage" asp-route-id=@Message.MessageId>Delete</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </table>}
+            </div>
+        </div>
+    </div>
+
+</div>

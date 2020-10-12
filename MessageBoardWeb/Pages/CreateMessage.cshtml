@@ -1,0 +1,56 @@
+﻿@page "{userid:int?}"
+@model MessageBoardWeb.Pages.CreateMessageModel
+<div class="container text-center">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Make Message</h1>
+            <div class=" text-right">
+                @Model.User.UserName
+            </div>
+            <br />
+            <br />
+        </div>
+    </div>
+
+
+    <form method="post" asp-route="@Model.User">
+        <div class="row" asp-validation-summary="All">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <div class="form-group">
+                        <p>Title: </p>
+                        <div class="input-group">
+                            <input type="text" class="form-control"
+                                   asp-for="Title" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <p>Message / Content </p>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               asp-for="Content" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <p>Category: </p>
+                    <div class="input-group">
+                        <input type="text" class="form-control"
+                               asp-for="Category" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div>
+                    <br />
+                    <p> </p>
+                    <button type="submit" class="btn btn-info">Post Message</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

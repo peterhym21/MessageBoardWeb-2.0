@@ -1,0 +1,32 @@
+﻿@page "{userid:int?}"
+@model MessageBoardWeb.Pages.Delete.DeleteUseresModel
+<div class="container">
+    <div class="col-lg-12">
+        <h1>Delete User</h1>
+        <br />
+        <p>Are you sure you want to delete the usere</p>
+    </div>
+    <br />
+    <div class="col-lg-12">
+        <form method="post" asp-route="@Model.User.UserId">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <p>Insert New Title: </p>
+                            <div class="input-group">
+                                <label>@Model.User.UserName</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div>
+                        <button type="submit" class="btn btn-info">Delete User</button>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

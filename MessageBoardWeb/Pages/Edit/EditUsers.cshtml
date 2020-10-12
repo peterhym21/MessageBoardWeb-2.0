@@ -1,0 +1,51 @@
+﻿@page "{userid:int?}"
+@model MessageBoardWeb.Pages.Edit.EditUsersModel
+<div class="container">
+    <div class="col-lg-12">
+        <h1>User Info Editing</h1>
+    </div>
+    <br />
+    <div class="col-lg-12">
+        <form method="post" asp-route="@Model.User.UserId">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <p>User Name (not requret): </p>
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                       placeholder="@Model.User.UserName" asp-for="Username" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <p>New Password (not requret): </p>
+                            <div class="input-group">
+                                <input type="text" class="form-control" asp-for="Password" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <p>Type New Password agine (not requret): </p>
+                            <div class="input-group">
+                                <input type="text" class="form-control" asp-for="Passwordtwo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div>
+                        <button type="submit" class="btn btn-info">Update User</button>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

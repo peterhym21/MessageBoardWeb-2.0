@@ -12,10 +12,12 @@ namespace MessageBoardWeb.Pages.Details
 {
     public class DetaileMessagesModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly IUsersRepository _usersRepository;
         private readonly ILogger<DetaileMessagesModel> _logger;
+
         public DetaileMessagesModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, IUsersRepository usersRepository, ILogger<DetaileMessagesModel> logger)
         {
             _messagesRepository = messagesRepository;
@@ -23,6 +25,7 @@ namespace MessageBoardWeb.Pages.Details
             _usersRepository = usersRepository;
             _logger = logger;
         }
+        #endregion
 
         public string Title { get; set; }
 

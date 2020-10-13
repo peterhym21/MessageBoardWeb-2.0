@@ -12,6 +12,8 @@ namespace MessageBoardRepository.Repository
 {
     public class UserRepository : IUsersRepository
     {
+        #region Feltes and Ctor
+
         private readonly string _conString;
         private List<Users> userList;
         private Users user;
@@ -21,10 +23,13 @@ namespace MessageBoardRepository.Repository
             _conString = conString;
         }
 
+        #endregion
 
         public List<Users> GetUsers()
         {
             userList = new List<Users>();
+
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("ReadUsers", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -68,6 +73,7 @@ namespace MessageBoardRepository.Repository
         public Users GetUser(int userId)
         {
             user = new Users();
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("ReadOneUser", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -92,6 +98,7 @@ namespace MessageBoardRepository.Repository
         {
             int userid = 0;
 
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("CreateUser", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -114,6 +121,7 @@ namespace MessageBoardRepository.Repository
 
         public int UpdateUser(string Username, string Password, int Userid)
         {
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("UpdateUsers", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -132,6 +140,7 @@ namespace MessageBoardRepository.Repository
 
         public void DeleteUser(int Userid)
         {
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("DeleteUser", con);
             cmd.CommandType = CommandType.StoredProcedure;

@@ -12,10 +12,12 @@ namespace MessageBoardWeb.Pages.Edit
 {
     public class EditUsersModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly IUsersRepository _usersRepository;
         private readonly ILogger<EditUsersModel> _logger;
+
         public EditUsersModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, IUsersRepository usersRepository, ILogger<EditUsersModel> logger)
         {
             _messagesRepository = messagesRepository;
@@ -23,6 +25,7 @@ namespace MessageBoardWeb.Pages.Edit
             _usersRepository = usersRepository;
             _logger = logger;
         }
+        #endregion
 
         [BindProperty]
         public string Username { get; set; }
@@ -35,10 +38,10 @@ namespace MessageBoardWeb.Pages.Edit
 
         public Users User { get; set; }
 
+
         public void OnGet(int userid)
         {
             User = _usersRepository.GetUser(userid);
-
         }
 
         public IActionResult OnPost(int userid)

@@ -13,6 +13,7 @@ namespace MessageBoardWeb.Pages
 {
     public class CreateUserModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly IUsersRepository _usersRepository;
@@ -24,6 +25,7 @@ namespace MessageBoardWeb.Pages
             _usersRepository = usersRepository;
             _logger = logger;
         }
+        #endregion
 
         [BindProperty, Required]
         public string Username { get; set; }

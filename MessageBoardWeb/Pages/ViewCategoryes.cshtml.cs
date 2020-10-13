@@ -13,9 +13,18 @@ namespace MessageBoardWeb.Pages
 {
     public class ViewCategoryesModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly ILogger<ViewCategoryesModel> _logger;
+
+        public ViewCategoryesModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, ILogger<ViewCategoryesModel> logger)
+        {
+            _messagesRepository = messagesRepository;
+            _categoryRepos = categoryRepos;
+            _logger = logger;
+        }
+        #endregion
 
         public SelectList Categories { get; set; }
 
@@ -25,12 +34,7 @@ namespace MessageBoardWeb.Pages
         public List<Category> Categorys { get; set; }
 
 
-        public ViewCategoryesModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, ILogger<ViewCategoryesModel> logger)
-        {
-            _messagesRepository = messagesRepository;
-            _categoryRepos = categoryRepos;
-            _logger = logger;
-        }
+
         public void OnGet()
         {
             MessagesList = _messagesRepository.ReadMessagesByCategory(SelectedCategoryId);

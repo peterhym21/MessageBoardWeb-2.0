@@ -12,15 +12,19 @@ namespace MessageBoardWeb.Pages.Edit
 {
     public class EditMessageModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly ILogger<EditMessageModel> _logger;
+
         public EditMessageModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, ILogger<EditMessageModel> logger)
         {
             _messagesRepository = messagesRepository;
             _categoryRepos = categoryRepos;
             _logger = logger;
         }
+        #endregion
+
         [BindProperty]
         public string Title { get; set; }
 
@@ -34,14 +38,16 @@ namespace MessageBoardWeb.Pages.Edit
 
         public Category GetCategory { get; set; }
 
+
         public void OnGet(int id)
         {
             GetMessages = _messagesRepository.GetMessage(id);
             GetCategory = _categoryRepos.ReadOneCategories(GetMessages.CategoryId);
         }
+
+
         public IActionResult OnPost(int id)
         {
-
             GetMessages = _messagesRepository.GetMessage(id);
             if (Title == null && Content == null)
             {

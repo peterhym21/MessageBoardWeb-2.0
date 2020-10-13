@@ -12,6 +12,8 @@ namespace MessageBoardRepository.Repository
 {
     public class MessagesRepository : IMessagesRepository
     {
+        #region Feltes and ctor
+
         private readonly string _conString;
         private List<Messages> messagesList;
         Messages getmessage;
@@ -21,10 +23,13 @@ namespace MessageBoardRepository.Repository
             _conString = conString;
         }
 
+        #endregion
 
         public List<Messages> ReadMessages()
         {
             messagesList = new List<Messages>();
+
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("ReadMessages", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -52,6 +57,8 @@ namespace MessageBoardRepository.Repository
         public List<Messages> GetTopTen()
         {
             messagesList = new List<Messages>();
+
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("GetTopTenMessages", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -79,6 +86,8 @@ namespace MessageBoardRepository.Repository
         public List<Messages> ReadMessagesByCategory(int categoryId)
         {
             messagesList = new List<Messages>();
+
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("GetCategoryMessage", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -107,6 +116,8 @@ namespace MessageBoardRepository.Repository
         public Messages GetMessage(int messageId)
         {
             getmessage = new Messages();
+
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("GetMessage", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -131,6 +142,8 @@ namespace MessageBoardRepository.Repository
         public List<Messages> getMessageFromUser(int userId)
         {
             messagesList = new List<Messages>();
+
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("GetMessageFromUser", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -160,6 +173,7 @@ namespace MessageBoardRepository.Repository
         {
             int messageId = 0;
 
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("CreateMessage", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -183,6 +197,7 @@ namespace MessageBoardRepository.Repository
 
         public void DeleteMessage(int messageId, int userid)
         {
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("DeleteMessage", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -197,7 +212,7 @@ namespace MessageBoardRepository.Repository
 
         public int UpdateMessage(int messageId, string title, string content, int categoryId)
         {
-
+            //SQL connection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("UpdateMessage", con);
             cmd.CommandType = CommandType.StoredProcedure;

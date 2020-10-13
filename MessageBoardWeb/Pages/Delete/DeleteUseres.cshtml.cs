@@ -12,10 +12,12 @@ namespace MessageBoardWeb.Pages.Delete
 {
     public class DeleteUseresModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly IUsersRepository _usersRepository;
         private readonly ILogger<DeleteUseresModel> _logger;
+
         public DeleteUseresModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, IUsersRepository usersRepository, ILogger<DeleteUseresModel> logger)
         {
             _messagesRepository = messagesRepository;
@@ -23,6 +25,7 @@ namespace MessageBoardWeb.Pages.Delete
             _usersRepository = usersRepository;
             _logger = logger;
         }
+        #endregion
 
 
         public Users User { get; set; }

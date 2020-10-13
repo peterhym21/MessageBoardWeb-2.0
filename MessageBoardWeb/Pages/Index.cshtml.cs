@@ -13,17 +13,11 @@ namespace MessageBoardWeb.Pages
 {
     public class IndexModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly IUsersRepository _usersRepository;
         private readonly ILogger<IndexModel> _logger;
-
-        public SelectList Categories { get; set; }
-        public int SelectedCategoryId { get; set; }
-        public List<Messages> MessagesList { get; set; }
-        public List<Category> Categorys { get; set; }
-        public Users User { get; set; }
-
 
         public IndexModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, IUsersRepository usersRepository, ILogger<IndexModel> logger)
         {
@@ -32,6 +26,16 @@ namespace MessageBoardWeb.Pages
             _usersRepository = usersRepository;
             _logger = logger;
         }
+        #endregion
+
+        public SelectList Categories { get; set; }
+        public int SelectedCategoryId { get; set; }
+        public List<Messages> MessagesList { get; set; }
+        public List<Category> Categorys { get; set; }
+        public Users User { get; set; }
+
+
+
 
         public void OnGet(int userid)
         {

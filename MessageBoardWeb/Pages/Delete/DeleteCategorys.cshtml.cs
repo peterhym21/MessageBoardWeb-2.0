@@ -12,23 +12,29 @@ namespace MessageBoardWeb.Pages.Delete
 {
     public class DeleteCategorysModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly ILogger<DeleteCategorysModel> _logger;
+
         public DeleteCategorysModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, ILogger<DeleteCategorysModel> logger)
         {
             _messagesRepository = messagesRepository;
             _categoryRepos = categoryRepos;
             _logger = logger;
         }
+        #endregion
 
         public List<Messages> MessagesList { get; set; }
         public Category GetCategory { get; set; }
+
 
         public void OnGet(int id)
         {
             GetCategory = _categoryRepos.ReadOneCategories(id);
         }
+
+
         public IActionResult OnPost(int id)
         {
             MessagesList = _messagesRepository.ReadMessagesByCategory(id);

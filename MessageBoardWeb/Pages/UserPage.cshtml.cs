@@ -12,17 +12,11 @@ namespace MessageBoardWeb.Pages
 {
     public class UserPageModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly IUsersRepository _usersRepository;
         private readonly ILogger<UserPageModel> _logger;
-
-        public int SelectedCategoryId { get; set; }
-        public List<Messages> MessagesList { get; set; }
-        public List<Category> Categorys { get; set; }
-        public Users User { get; set; }
-
-
         public UserPageModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, IUsersRepository usersRepository, ILogger<UserPageModel> logger)
         {
             _messagesRepository = messagesRepository;
@@ -31,6 +25,12 @@ namespace MessageBoardWeb.Pages
             _logger = logger;
         }
 
+        #endregion
+
+        public int SelectedCategoryId { get; set; }
+        public List<Messages> MessagesList { get; set; }
+        public List<Category> Categorys { get; set; }
+        public Users User { get; set; }
 
         public void OnGet(int userid)
         {

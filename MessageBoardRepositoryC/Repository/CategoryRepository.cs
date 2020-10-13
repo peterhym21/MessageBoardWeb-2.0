@@ -12,6 +12,8 @@ namespace MessageBoardRepository.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
+        #region Feltes and ctor
+
         private readonly string _conString;
         private List<Category> categories;
         private Category getCategory;
@@ -21,9 +23,13 @@ namespace MessageBoardRepository.Repository
             _conString = conString;
         }
 
+        #endregion
+
         public List<Category> ReadCategories()
         {
             categories = new List<Category>();
+
+            // SQL Conection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("ReadCategorys", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -42,6 +48,8 @@ namespace MessageBoardRepository.Repository
         public Category ReadOneCategories(int Id)
         {
             getCategory = new Category();
+
+            // SQL Conection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("ReadOneCategory", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -65,6 +73,7 @@ namespace MessageBoardRepository.Repository
             categories = new List<Category>();
             int CategoryId = 0;
 
+            // SQL Conection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("CreateCategory", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -89,6 +98,7 @@ namespace MessageBoardRepository.Repository
 
         public int UpdateCategory(string CategoryRename, int CategoryId)
         {
+            // SQL Conection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("UpdateCategorys", con);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -105,6 +115,7 @@ namespace MessageBoardRepository.Repository
 
         public int DeleteCategory(int CategoryId)
         {
+            // SQL Conection
             SqlConnection con = new SqlConnection(_conString);
             SqlCommand cmd = new SqlCommand("DeleteCategorys", con);
             cmd.CommandType = CommandType.StoredProcedure;

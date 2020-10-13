@@ -12,6 +12,7 @@ namespace MessageBoardWeb.Pages.Delete
 {
     public class DeleteMessageModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly ILogger<DeleteMessageModel> _logger;
@@ -21,6 +22,8 @@ namespace MessageBoardWeb.Pages.Delete
             _categoryRepos = categoryRepos;
             _logger = logger;
         }
+        #endregion
+
         public string Title { get; set; }
 
         [BindProperty]
@@ -38,6 +41,8 @@ namespace MessageBoardWeb.Pages.Delete
             GetMessages = _messagesRepository.GetMessage(id);
             GetCategory = _categoryRepos.ReadOneCategories(GetMessages.CategoryId);
         }
+
+
         public IActionResult OnPost(int id, int userid)
         {
             _messagesRepository.DeleteMessage(id, userid);

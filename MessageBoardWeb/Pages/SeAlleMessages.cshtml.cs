@@ -12,14 +12,10 @@ namespace MessageBoardWeb.Pages
 {
     public class SeAlleMessagesModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly ILogger<SeAlleMessagesModel> _logger;
-
-        public int SelectedCategoryId { get; set; }
-        public List<Messages> MessagesList { get; set; }
-        public List<Category> Categorys { get; set; }
-
 
         public SeAlleMessagesModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, ILogger<SeAlleMessagesModel> logger)
         {
@@ -27,6 +23,12 @@ namespace MessageBoardWeb.Pages
             _categoryRepos = categoryRepos;
             _logger = logger;
         }
+        #endregion
+
+        public int SelectedCategoryId { get; set; }
+        public List<Messages> MessagesList { get; set; }
+        public List<Category> Categorys { get; set; }
+
         public void OnGet()
         {
             MessagesList = _messagesRepository.ReadMessages();

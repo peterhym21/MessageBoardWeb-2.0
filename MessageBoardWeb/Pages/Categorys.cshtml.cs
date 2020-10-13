@@ -12,13 +12,10 @@ namespace MessageBoardWeb.Pages
 {
     public class CategorysModel : PageModel
     {
+        #region Feltes and ctor
         private readonly ICategoryRepository _categoryRepos;
         private readonly IMessagesRepository _messagesRepository;
         private readonly ILogger<CategorysModel> _logger;
-
-        public int SelectedCategoryId { get; set; }
-        public List<Category> Categorys { get; set; }
-
 
         public CategorysModel(ICategoryRepository categoryRepos, IMessagesRepository messagesRepository, ILogger<CategorysModel> logger)
         {
@@ -26,6 +23,10 @@ namespace MessageBoardWeb.Pages
             _categoryRepos = categoryRepos;
             _logger = logger;
         }
+        #endregion
+
+        public int SelectedCategoryId { get; set; }
+        public List<Category> Categorys { get; set; }
 
         public void OnGet()
         {
